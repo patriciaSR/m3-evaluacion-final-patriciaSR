@@ -1,8 +1,11 @@
 .app {
   min-height: 100vh;
   background-color: black;
+  display: flex;
+  flex-direction: column;
 }
 .page__main {
   text-align: center;
+  flex-grow: 1;
 }
 

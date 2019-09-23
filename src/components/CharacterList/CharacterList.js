@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import CharacterCard from './CharacterCard/CharacterCard';
+import CharacterCard from './../CharacterCard/CharacterCard';
 import './CharacterList.scss';
 
 const CharacterList = ({ data }) => {
@@ -14,7 +14,7 @@ const CharacterList = ({ data }) => {
         .map(character => (
           <li className="list__character" key={character.id} id={character.id}>
             <Link to={`/character/${character.id}`} className="character__link" >
-              <CharacterCard character={character} /> 
+              <CharacterCard character={character} />
             </Link>
           </li>
         ))}

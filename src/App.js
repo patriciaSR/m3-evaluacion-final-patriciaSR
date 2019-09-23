@@ -14,7 +14,8 @@ class App extends React.Component {
 
     this.state = {
       characters: [],
-      filterName: ''
+      filterName: '',
+      isFetching: true
     }
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
@@ -24,7 +25,8 @@ class App extends React.Component {
   getCharactersArr() {
     getCharacters().then(data => {
       this.setState({
-        characters: data.results
+        characters: data.results,
+        isFetching: false
       })
     })
   }
@@ -42,26 +44,30 @@ class App extends React.Component {
   }
 
   render() {
+    const { isFetching, characters } = this.state;
     return (
       <div className="app">
         <Header />
 
         <main className="page__main">
-          <Switch>
-            <Route exact path="/" render={() => (
-              <Home
-                data={this.state}
-                filterCharacters={this.filterCharacters}
+          {isFetching ? <p className="loading__text">Cargando...</p> :
+            <Switch>
+              <Route exact path="/" render={() => (
+                <Home
+                  data={this.state}
+                  filterCharacters={this.filterCharacters}
+                />
+              )}
               />
-            )}
-            />
-            <Route path="/character/:id" render={(props) => (
-              <CharacterDetail
-                characters={this.state.characters}
-                routeData={props} />
-            )}
-            />
-          </Switch>
+              <Route path="/character/:id" render={(props) => (
+                <CharacterDetail
+                  characters={characters}
+                  isFetching={isFetching}
+                  routeData={props} />
+              )}
+              />
+            </Switch>
+          }
         </main>
 
         <Footer />

@@ -1,4 +1,13 @@
-.characterDetail__container {
+.characterDetail__containter {
+  margin: 0 20px;
+  @media all and (min-width: 720px) {
+    margin: 0 65px;
+  }
+  @media all and (min-width: 1200px) {
+    margin: 0 350px;
+  }
+}
+.characterCard__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,11 +16,20 @@
 }
 .characterDetail__card {
   background-color: #35adc5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 30px;
-  max-width: 600px;
+  margin: 10px 20px 30px;
+  @media all and (min-width:720px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 600px;
+  }
+  .character__image {
+    padding: 10px;
+    width: 250px;
+    @media all and (min-width:720px) {
+      padding: 30px;
+    }
+  }
   .character__data {
     padding: 10px;
     text-align: left;
@@ -24,7 +42,19 @@
     }
   }
 }
+
 .app__back {
   text-decoration: none;
   color: white;
+  align-self: flex-end;
+  display: block;
+  &::before {
+    content: '<';
+    margin-right: 10px;
+  }
+}
+
+.not-found__img{
+  width: 300px;
+  margin-bottom: 10px;
 }
