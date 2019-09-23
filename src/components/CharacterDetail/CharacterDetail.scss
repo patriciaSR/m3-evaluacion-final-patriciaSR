@@ -1,0 +1,30 @@
+.characterDetail__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.characterDetail__card {
+  background-color: #35adc5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  max-width: 600px;
+  .character__data {
+    padding: 10px;
+    text-align: left;
+    .card__name, .character__species{
+      margin: 0;
+    }
+    .card__name {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+  }
+}
+.app__back {
+  text-decoration: none;
+  color: white;
+}

@@ -13,7 +13,7 @@ const CharacterList = ({ data }) => {
         .filter(character => filterName ? character.name.toLowerCase().includes(filterName) : true)
         .map(character => (
           <li className="list__character" key={character.id} id={character.id}>
-            <Link to={`/character/${character.id}`} style={{ textDecoration: 'none' }} >
+            <Link to={`/character/${character.id}`} className="character__link" >
               <CharacterCard character={character} /> 
             </Link>
           </li>
