@@ -13,10 +13,15 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-.character__link{
+.character__link {
   text-decoration: none;
 }
 
-.loading__text {
+.loading__text, .no-results__text {
   color: white;
 }
+
+.no-results__image {
+  width: 300px;
+}
+

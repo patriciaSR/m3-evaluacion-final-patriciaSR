@@ -1,11 +1,7 @@
 .characterDetail__containter {
-  margin: 0 20px;
-  @media all and (min-width: 720px) {
-    margin: 0 65px;
-  }
-  @media all and (min-width: 1200px) {
-    margin: 0 350px;
-  }
+  display: flex;
+  justify-content: center;
+  margin: 0px 30px;
 }
 .characterCard__container {
   display: flex;
@@ -13,21 +9,31 @@
   justify-content: center;
   align-items: center;
   color: white;
+  width: 100%;
+  max-width: 300px;
+  
+  @media all and (min-width: 720px) {
+    max-width: 600px;
+  }
 }
 .characterDetail__card {
   background-color: #35adc5;
   margin: 10px 20px 30px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
   @media all and (min-width:720px) {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 600px;
   }
   .character__image {
-    padding: 10px;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
+
     @media all and (min-width:720px) {
-      padding: 30px;
+      padding-right: 30px;
     }
   }
   .character__data {

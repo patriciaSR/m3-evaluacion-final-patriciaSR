@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './CharacterDetail.scss';
 import mrsMee from './../../images/mrs-mee.gif';
+import './styles.scss';
 
 const CharacterDetail = (props) => {
   const characterId = parseInt(props.routeData.match.params.id);

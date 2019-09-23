@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Filters.scss';
+import './styles.scss';
 
 const Filters = ({ filterCharacters }) => {
 

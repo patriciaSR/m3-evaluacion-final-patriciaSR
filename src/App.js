@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './components/Home/Home';
-import CharacterDetail from './components/CharacterDetail/CharacterDetail';
-import Header from './components/Header/Header';
+import Home from './components/Home';
+import CharacterDetail from './components/CharacterDetail';
+import Header from './components/Header';
 import getCharacters from './services/getCharacters';
 import './App.scss';
-import Footer from './components/Footer/Footer';
+import Footer from './components/Footer';
 
 class App extends React.Component {
 
