@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.scss';
 import getCharacters from './services/getCharacters';
+import './App.scss';
 
 class App extends React.Component {
 
@@ -8,10 +8,13 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      characters: []
+      characters: [],
+      filterName: ''
     }
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
+    this.filterCharacters = this.filterCharacters.bind(this);
+
   }
 
   getCharactersArr() {
@@ -19,6 +22,14 @@ class App extends React.Component {
       this.setState({
         characters: data.results
       })
+    })
+  }
+
+  filterCharacters(e) {
+    const characterName = e.currentTarget.value.toLowerCase();
+
+    this.setState({
+      filterName: characterName
     })
   }
 
@@ -34,10 +45,12 @@ class App extends React.Component {
         </header>
         <div className="page__filters">
           <label htmlFor="finder" className="finder__label"></label>
-          <input type="text" className="finder__input" id="finder" />
+          <input type="text" className="finder__input" id="finder" onChange={this.filterCharacters}/>
         </div>
         <ul className="character__list">
-          {this.state.characters.map(character => (
+          {this.state.characters
+          .filter(character => this.state.filterName ? character.name.toLowerCase().includes(this.state.filterName) : true)
+          .map(character => (
             <li className="list__character" key={character.id} id={character.id}>
               <div className="character__card">
                 <img src={character.image} alt={character.name} className="character__image" />
