@@ -4,27 +4,27 @@ import getCharacters from './services/getCharacters';
 
 class App extends React.Component {
 
-constructor(props) {
-  super(props);
+  constructor(props) {
+    super(props);
 
-  this.state = {
-    characters: []
+    this.state = {
+      characters: []
+    }
+
+    this.getCharactersArr = this.getCharactersArr.bind(this);
   }
 
-  this.getCharactersArr = this.getCharactersArr.bind(this);
-}
-
-getCharactersArr() {
-  getCharacters().then(data => {
-    this.setState({
-      characters: data
+  getCharactersArr() {
+    getCharacters().then(data => {
+      this.setState({
+        characters: data.results
+      })
     })
-  })
-}
+  }
 
-componentDidMount() {
-  this.getCharactersArr();
-}
+  componentDidMount() {
+    this.getCharactersArr();
+  }
 
   render() {
     return (
@@ -37,7 +37,15 @@ componentDidMount() {
           <input type="text" className="finder__input" id="finder" />
         </div>
         <ul className="character__list">
-          <li className="list__character">Ricky</li>
+          {this.state.characters.map(character => (
+            <li className="list__character" key={character.id} id={character.id}>
+              <div className="character__card">
+                <img src={character.image} alt={character.name} className="character__image" />
+                <h2 className="card__name">{character.name}</h2>
+                <p className="character__species">{character.species}</p>
+              </div>
+            </li>
+          ))}
         </ul>
 
       </div>
