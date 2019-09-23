@@ -19,7 +19,7 @@ const CharacterDetail = (props) => {
 
   return (
     <>
-      <Link to='/'> {`< Volver`} </Link>
+      <Link to='/'>Volver</Link>
       <div className="CharacterDetail__card">
         <img src={image} alt={name} className="character__image" />
         <div className="character__data">

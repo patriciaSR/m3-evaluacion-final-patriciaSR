@@ -2,8 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import CharacterDetail from './components/CharacterDetail';
+import Header from './components/Header';
 import getCharacters from './services/getCharacters';
 import './App.scss';
+import Footer from './components/Footer';
 
 class App extends React.Component {
 
@@ -17,7 +19,6 @@ class App extends React.Component {
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
     this.filterCharacters = this.filterCharacters.bind(this);
-
   }
 
   getCharactersArr() {
@@ -43,9 +44,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <header className="page__header">
-          <h1 className="page__title">Directorio de personajes de Rick y Morty</h1>
-        </header>
+        <Header />
+
         <main className="page__main">
           <Switch>
             <Route exact path="/" render={() => (
@@ -63,6 +63,8 @@ class App extends React.Component {
             />
           </Switch>
         </main>
+
+        <Footer />
       </div>
     );
   }
