@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Filters from './Filters';
-import CharacterList from './CharacterList';
+import Filters from './Filters/Filters';
+import CharacterList from './CharacterList/CharacterList';
 
 const Home = (props) => {
   const { data, filterCharacters } = props;

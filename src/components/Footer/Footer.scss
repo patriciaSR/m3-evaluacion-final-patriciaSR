@@ -1,0 +1,13 @@
+.page_footer {
+  border-top: 1px solid #35adc5;
+  color: white;
+  padding: 20px;
+  .footer__copy {
+    margin: 0 0 5px;
+    .github__link{
+      text-decoration: none;
+      color:  #35adc5;
+    }
+  }
+  
+}

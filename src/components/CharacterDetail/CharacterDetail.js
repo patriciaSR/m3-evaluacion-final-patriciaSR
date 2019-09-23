@@ -9,7 +9,12 @@ const CharacterDetail = (props) => {
 
   if (!selectedCharacter) {
       if(characterId > 20 || characterId < 0){
-        return <p>Ese personaje no lo tenemos en el directorio :(</p>
+        return (
+          <>
+          <p>Ese personaje no lo tenemos en el directorio :(</p>
+          <Link to="/" className="app__back">Volver al listado</Link>
+          </>
+        )
       } else {
         return <p>Cargando...</p>
       }

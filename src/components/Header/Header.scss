@@ -1,0 +1,17 @@
+.page__header {
+  padding: 20px;
+}
+.title__container {
+  display: flex;
+  justify-content: center;
+}
+.page__title {
+  width: 400px;
+  height: 1px;
+  overflow: hidden;
+  background-image: url('./../../images/rick-logo.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  padding-top: 130px;
+}

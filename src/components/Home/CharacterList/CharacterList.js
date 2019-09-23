@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import CharacterCard from './CharacterCard';
+import CharacterCard from './CharacterCard/CharacterCard';
+import './CharacterList.scss';
 
 const CharacterList = ({ data }) => {
   const { characters, filterName } = data;
