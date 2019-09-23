@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './styles.scss';
 
 const CharacterCard = ({ character }) => {
   const {
@@ -12,8 +12,10 @@ const CharacterCard = ({ character }) => {
   return (
     <div className="character__card">
       <img src={image} alt={name} className="character__image" />
-      <h2 className="card__name">{name}</h2>
-      <p className="character__species">{species}</p>
+      <div className="character__data">
+        <h2 className="card__name">{name}</h2>
+        <p className="character__species">{species}</p>
+      </div>
     </div>
   )
 }

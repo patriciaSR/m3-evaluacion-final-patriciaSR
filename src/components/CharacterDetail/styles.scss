@@ -1,0 +1,70 @@
+.characterDetail__containter {
+  display: flex;
+  justify-content: center;
+  margin: 0px 30px;
+}
+.characterCard__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 100%;
+  max-width: 300px;
+  
+  @media all and (min-width: 720px) {
+    max-width: 600px;
+  }
+}
+.characterDetail__card {
+  background-color: #35adc5;
+  margin: 10px 20px 30px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @media all and (min-width:720px) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .character__image {
+    width: 100%;
+    max-width: 250px;
+
+    @media all and (min-width:720px) {
+      padding-right: 30px;
+    }
+  }
+  .character__data {
+    padding: 10px;
+    text-align: left;
+    .card__name, .character__species{
+      margin: 0;
+    }
+    .card__name {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    
+    .status__icon,.specie__icon {
+      margin-left: 5px;
+    }
+  }
+}
+
+.app__back {
+  text-decoration: none;
+  color: white;
+  align-self: flex-end;
+  display: block;
+  &::before {
+    content: '<';
+    margin-right: 10px;
+  }
+}
+
+.not-found__img{
+  width: 300px;
+  margin-bottom: 10px;
+}
