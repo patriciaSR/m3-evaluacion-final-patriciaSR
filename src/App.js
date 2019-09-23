@@ -6,28 +6,33 @@ import Header from './components/Header';
 import getCharacters from './services/getCharacters';
 import './App.scss';
 import Footer from './components/Footer';
+import Loading from './components/Loading';
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       characters: [],
       filterName: '',
-      isFetching: true
+      isFetching: true,
+      species: []
     }
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
     this.filterCharacters = this.filterCharacters.bind(this);
+    this.getSpecies = this.getSpecies.bind(this);
+
   }
 
   getCharactersArr() {
     getCharacters().then(data => {
       this.setState({
         characters: data.results,
-        isFetching: false
-      })
+        isFetching: false,
+        species: this.getSpecies(data.results)
+      });
+
     })
   }
 
@@ -43,6 +48,15 @@ class App extends React.Component {
     this.getCharactersArr();
   }
 
+  getSpecies(data) {
+    return data.reduce((acc, character) => {
+      if (!acc.includes(character.species)) {
+        acc.push(character.species);
+      }
+      return acc;
+    }, []);
+  }
+
   render() {
     const { isFetching, characters } = this.state;
     return (
@@ -50,7 +64,7 @@ class App extends React.Component {
         <Header />
 
         <main className="page__main">
-          {isFetching ? <p className="loading__text">Cargando...</p> :
+          {isFetching ? <Loading /> :
             <Switch>
               <Route exact path="/" render={() => (
                 <Home

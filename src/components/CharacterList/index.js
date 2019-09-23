@@ -6,7 +6,7 @@ import noResultImg from '../../images/no-results.gif';
 import './styles.scss';
 
 
-const NoCharacters = () => (
+const NoResults = () => (
   <>
     <p className="no-results__text">Lo siento, no hay resultados para esa búsqueda</p>
     <img src={noResultImg} alt="" className="no-results__image" />
@@ -21,12 +21,12 @@ const CharacterList = ({ data }) => {
 
   if (!filteredCharacters.length) {
     return (
-      <NoCharacters />
+      <NoResults />
     );
   }
 
   return (
-    <ul className="character__list">
+    <ol className="character__list">
       {filteredCharacters.map(character => (
         <li className="list__character" key={character.id} id={character.id}>
           <Link to={`/character/${character.id}`} className="character__link" >
@@ -34,7 +34,7 @@ const CharacterList = ({ data }) => {
           </Link>
         </li>
       ))}
-    </ul>
+    </ol>
   )
 }
 
