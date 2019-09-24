@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import mrsMee from './../../images/mrs-mee.gif';
-import './styles.scss';
 import Loading from '../Loading';
+import mrsMee from './../../images/mrs-mee.gif';
+import statusIcons from './../../data/statusIcons';
+import speciesIcons from './../../data/speciesIcons';
+import './styles.scss';
 
 const NoCharacter = () => (
   <>
@@ -29,14 +31,7 @@ const CharacterDetail = (props) => {
     }
   }
 
-
   const { image, name, status, species, origin, episode } = selectedCharacter;
-
-  let statusIcons = {
-    alive: ' fas fa-heart',
-    dead: 'fas fa-skull',
-    unknow: 'fas fa-question'
-  };
 
   let selectedStatus;
 
@@ -48,14 +43,7 @@ const CharacterDetail = (props) => {
     selectedStatus = statusIcons.unknow;
   }
 
-
-  const speciesIcons = {
-    human: 'fas fa-male',
-    alien: ' fab fa-reddit-alien'
-  }
-
   const selectedSpecie = species === 'Human' ? speciesIcons.human : speciesIcons.alien;
-
 
   return (
     <div className="characterDetail__containter">
