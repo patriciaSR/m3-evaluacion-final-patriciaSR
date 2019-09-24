@@ -34,7 +34,7 @@ const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelec
                 value={gender}
                 name={gender}
                 checked={genderSelected === gender}
-                onClick={filterGender}
+                onChange={filterGender}
               />
               {gender}
             </label>
@@ -48,7 +48,7 @@ const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelec
               value="all"
               name="all"
               checked={genderSelected === "all"}
-              onClick={filterGender}
+              onChange={filterGender}
             />
             All
             </label>
