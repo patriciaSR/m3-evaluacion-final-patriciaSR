@@ -14,19 +14,21 @@ class App extends React.Component {
 
     this.state = {
       characters: [],
-      filterName: '',
       isFetching: true,
       species: [],
+      origin: 'all',
+      filterName: '',
+      filterGender: 'all',
       filteredSpecies: [],
-      filteredEpisodes: 0
+      filterOrigin: 'all',
+      filteredLocations: []
     }
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
-    this.filterCharacters = this.filterCharacters.bind(this);
-    this.getSpecies = this.getSpecies.bind(this);
+    this.getCharacterInfoByKey = this.getCharacterInfoByKey.bind(this);
+    this.filterByName = this.filterByName.bind(this);
     this.filterSpecies = this.filterSpecies.bind(this);
-    this.filterGender = this.filterGender.bind(this);
-    this.filterEpisodes = this.filterEpisodes.bind(this);
+    this.filterLocations = this.filterLocations.bind(this);
 
   }
 
@@ -35,19 +37,24 @@ class App extends React.Component {
       this.setState({
         characters: data.results,
         isFetching: false,
-        species: this.getSpecies(data.results),
-        gender: this.getGender(data.results),
-        genderSelected: 'all'
+        species: this.getCharacterInfoByKey(data.results, 'species'),
+        gender: this.getCharacterInfoByKey(data.results, 'gender'),
+        origin: this.getCharacterSubInfoByKey(data.results, 'origin'),
+        locations: this.getCharacterSubInfoByKey(data.results, 'location'),
+        filterGender: 'all'
 
       });
     })
   }
 
-  filterCharacters(e) {
-    const characterName = e.currentTarget.value.toLowerCase();
-
+  filterByName(e){
+    let value = e.currentTarget.value.toLowerCase();
+    const name = e.currentTarget.name;
+    if (name === 'episodes'){
+      value = parseInt(value)
+    }
     this.setState({
-      filterName: characterName
+      [name]: value
     })
   }
 
@@ -66,41 +73,47 @@ class App extends React.Component {
       })
     )
   }
-  filterGender(e) {
-    const genderValue = e.currentTarget.value;
-    this.setState({
-      genderSelected: genderValue
-    })
+  filterLocations(e) {
+    const locationValue = e.currentTarget.value;
+    const newLocationsArr = [...this.state.filteredLocations];
+    const locationIndex = newLocationsArr.findIndex(location => location === locationValue);
+    if (locationIndex < 0) {
+      newLocationsArr.push(locationValue);
+    } else {
+      newLocationsArr.splice(locationIndex, 1);
+    }
+    return (
+      this.setState({
+        filteredLocations: newLocationsArr
+      })
+    )
   }
 
-  filterEpisodes(e) {
-    const episodesValue = parseInt(e.currentTarget.value);
-    this.setState({
-      filteredEpisodes: episodesValue
-    })
+  getCharacterInfoByKey(data, key) {
+    const infoArr = data.map(character => character[key]);
+    const infoSet = new Set(infoArr);
+    const uniqInfoArr = [...infoSet];
+
+    return uniqInfoArr;
+  }
+  getCharacterSubInfoByKey(data, key) {
+    const infoArr = data.map(character => character[key].name);
+    const infoSet = new Set(infoArr);
+    const uniqInfoArr = [...infoSet];
+
+    return uniqInfoArr;
   }
 
+  //   return data.reduce((acc, character) => {
+  //     if (!acc.includes(character.species)) {
+  //       acc.push(character.species);
+  //     }
+  //     return acc;
+  //   }, []);
+  // }
 
   componentDidMount() {
     this.getCharactersArr();
-  }
-
-  getSpecies(data) {
-    return data.reduce((acc, character) => {
-      if (!acc.includes(character.species)) {
-        acc.push(character.species);
-      }
-      return acc;
-    }, []);
-  }
-
-  getGender(data) {
-    return data.reduce((acc, character) => {
-      if (!acc.includes(character.gender)) {
-        acc.push(character.gender);
-      }
-      return acc;
-    }, []);
   }
 
   render() {
@@ -115,10 +128,9 @@ class App extends React.Component {
               <Route exact path="/" render={() => (
                 <Home
                   data={this.state}
-                  filterCharacters={this.filterCharacters}
+                  filterByName={this.filterByName}
                   filterSpecies={this.filterSpecies}
-                  filterGender={this.filterGender}
-                  filterEpisodes={this.filterEpisodes}
+                  filterLocations={this.filterLocations}
                 />
               )}
               />
