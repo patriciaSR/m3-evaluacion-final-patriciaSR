@@ -6,9 +6,11 @@
   grid-template-columns: 1fr;
   grid-gap: 30px 10px;
   justify-items: center;
+  
   @media all and (min-width: 780px) {
     grid-template-columns: 1fr 1fr;
   }
+  
   @media all and (min-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -16,11 +18,9 @@
 .character__link {
   text-decoration: none;
 }
-
 .loading__text, .no-results__text {
   color: white;
 }
-
 .no-results__image {
   width: 300px;
 }

@@ -3,10 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import CharacterDetail from './components/CharacterDetail';
 import Header from './components/Header';
-import getCharacters from './services/getCharacters';
-import './App.scss';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
+import getCharacters from './services/getCharacters';
+import './App.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +22,6 @@ class App extends React.Component {
     this.getCharactersArr = this.getCharactersArr.bind(this);
     this.filterCharacters = this.filterCharacters.bind(this);
     this.getSpecies = this.getSpecies.bind(this);
-
   }
 
   getCharactersArr() {
@@ -32,7 +31,6 @@ class App extends React.Component {
         isFetching: false,
         species: this.getSpecies(data.results)
       });
-
     })
   }
 
