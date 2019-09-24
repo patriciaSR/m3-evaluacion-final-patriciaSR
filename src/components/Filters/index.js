@@ -55,8 +55,8 @@ const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelec
         </div>
       </div>
       <div className="select">
-        <label for="size">Nº de Episodios</label>
-        <select id="size" name="size" onChange={filterEpisodes}>
+        <label htmlFor="episodes" className="episodes__label">Nº de Episodios</label>
+        <select id="episodes" name="episodes" onChange={filterEpisodes}>
           <option value="0"> All </option>
           <option value="5">5 o más</option>
           <option value="10">10 o más</option>
