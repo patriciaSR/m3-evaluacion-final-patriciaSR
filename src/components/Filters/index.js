@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const Filters = ({ filterByName, filterSpecies, filterLocations, data }) => {
-  const {species, gender, filterGender, origin, locations } = data;
+  const { species, gender, filterGender, origin, locations } = data;
   return (
     <div className="page__filters">
       <div className="finder">
@@ -73,9 +73,9 @@ const Filters = ({ filterByName, filterSpecies, filterLocations, data }) => {
         </select>
       </div>
 
-      <div className="checkbox">
+      <div className="checkbox-locations">
         {locations.map((location, index) => (
-          <label htmlFor={`locations-${index}`} key={index}>
+          <label htmlFor={`locations-${index}`} key={index} className="checkbox-locations">
             <input
               id={`locations-${index}`}
               type="checkbox"

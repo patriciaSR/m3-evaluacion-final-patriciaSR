@@ -8,10 +8,11 @@ import Loading from './components/Loading';
 import getCharacters from './services/getCharacters';
 import './App.scss';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       characters: [],
       isFetching: true,
@@ -23,7 +24,7 @@ class App extends React.Component {
       filterOrigin: 'all',
       filteredLocations: []
     }
-
+    
     this.getCharactersArr = this.getCharactersArr.bind(this);
     this.getCharacterInfoByKey = this.getCharacterInfoByKey.bind(this);
     this.filterByName = this.filterByName.bind(this);
@@ -31,7 +32,7 @@ class App extends React.Component {
     this.filterLocations = this.filterLocations.bind(this);
 
   }
-
+  
   getCharactersArr() {
     getCharacters().then(data => {
       this.setState({
@@ -42,22 +43,45 @@ class App extends React.Component {
         origin: this.getCharacterSubInfoByKey(data.results, 'origin'),
         locations: this.getCharacterSubInfoByKey(data.results, 'location'),
         filterGender: 'all'
-
+        
       });
     })
   }
-
-  filterByName(e){
+  getCharacterInfoByKey(data, key) {
+    const infoArr = data.map(character => character[key]);
+    const infoSet = new Set(infoArr);
+    const uniqInfoArr = [...infoSet];
+    
+    return uniqInfoArr;
+  }
+  getCharacterSubInfoByKey(data, key) {
+    const infoArr = data.map(character => character[key].name);
+    const infoSet = new Set(infoArr);
+    const uniqInfoArr = [...infoSet];
+    
+    return uniqInfoArr;
+  }
+  
+  //  Otra forma de filtrar un array
+  //   return data.reduce((acc, character) => {
+    //     if (!acc.includes(character.species)) {
+      //       acc.push(character.species);
+      //     }
+      //     return acc;
+      //   }, []);
+      // }
+      
+      filterByName(e) {
     let value = e.currentTarget.value.toLowerCase();
     const name = e.currentTarget.name;
-    if (name === 'episodes'){
+    if (name === 'episodes') {
       value = parseInt(value)
     }
     this.setState({
       [name]: value
     })
   }
-
+  
   filterSpecies(e) {
     const specieValue = e.currentTarget.value;
     const newSpeciesArr = [...this.state.filteredSpecies];
@@ -71,8 +95,8 @@ class App extends React.Component {
       this.setState({
         filteredSpecies: newSpeciesArr
       })
-    )
-  }
+      )
+    }
   filterLocations(e) {
     const locationValue = e.currentTarget.value;
     const newLocationsArr = [...this.state.filteredLocations];
@@ -86,36 +110,13 @@ class App extends React.Component {
       this.setState({
         filteredLocations: newLocationsArr
       })
-    )
-  }
-
-  getCharacterInfoByKey(data, key) {
-    const infoArr = data.map(character => character[key]);
-    const infoSet = new Set(infoArr);
-    const uniqInfoArr = [...infoSet];
-
-    return uniqInfoArr;
-  }
-  getCharacterSubInfoByKey(data, key) {
-    const infoArr = data.map(character => character[key].name);
-    const infoSet = new Set(infoArr);
-    const uniqInfoArr = [...infoSet];
-
-    return uniqInfoArr;
-  }
-
-  //   return data.reduce((acc, character) => {
-  //     if (!acc.includes(character.species)) {
-  //       acc.push(character.species);
-  //     }
-  //     return acc;
-  //   }, []);
-  // }
-
-  componentDidMount() {
-    this.getCharactersArr();
-  }
-
+      )
+    }
+    
+    componentDidMount() {
+      this.getCharactersArr();
+    }
+    
   render() {
     const { isFetching, characters } = this.state;
     return (
@@ -127,20 +128,21 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" render={() => (
                 <Home
-                  data={this.state}
-                  filterByName={this.filterByName}
-                  filterSpecies={this.filterSpecies}
-                  filterLocations={this.filterLocations}
+                data={this.state}
+                filterByName={this.filterByName}
+                filterSpecies={this.filterSpecies}
+                filterLocations={this.filterLocations}
                 />
-              )}
-              />
+                )}
+                />
               <Route path="/character/:id" render={(props) => (
                 <CharacterDetail
-                  characters={characters}
-                  isFetching={isFetching}
-                  routeData={props} />
-              )}
-              />
+                characters={characters}
+                isFetching={isFetching}
+                routeData={props} 
+                />
+                )}
+                />
             </Switch>
           }
         </main>
@@ -152,3 +154,16 @@ class App extends React.Component {
 }
 
 export default App;
+
+// // otra forma de hacer un filter de objetos anidados key: 'a.b.c'
+// function get(object, key) {
+//   const props = key.split('.');
+
+//   return props.reduce((currentObject, nextKey) => {
+//     if (currentObject) {
+//       const value = currentObject[nextKey];
+
+//       return value;
+//     }
+//   }, object);
+// }
