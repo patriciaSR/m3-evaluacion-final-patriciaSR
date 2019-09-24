@@ -16,12 +16,14 @@ class App extends React.Component {
       characters: [],
       filterName: '',
       isFetching: true,
-      species: []
+      species: [],
+      filteredSpecies: []
     }
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
     this.filterCharacters = this.filterCharacters.bind(this);
     this.getSpecies = this.getSpecies.bind(this);
+    this.filterSpecies = this.filterSpecies.bind(this);
   }
 
   getCharactersArr() {
@@ -41,6 +43,23 @@ class App extends React.Component {
       filterName: characterName
     })
   }
+
+  filterSpecies(e) {
+    const specieValue = e.currentTarget.value;
+    const newSpeciesArr = [...this.state.filteredSpecies];
+    const specieIndex = newSpeciesArr.findIndex(specie => specie === specieValue);
+    if (specieIndex < 0) {
+      newSpeciesArr.push(specieValue);
+    } else {
+      newSpeciesArr.splice(specieIndex, 1);
+    }
+    return (
+      this.setState({
+        filteredSpecies: newSpeciesArr
+      })
+    )
+  }
+
 
   componentDidMount() {
     this.getCharactersArr();
@@ -68,6 +87,7 @@ class App extends React.Component {
                 <Home
                   data={this.state}
                   filterCharacters={this.filterCharacters}
+                  filterSpecies={this.filterSpecies}
                 />
               )}
               />

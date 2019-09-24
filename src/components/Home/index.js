@@ -4,11 +4,11 @@ import Filters from '../Filters';
 import CharacterList from '../CharacterList';
 
 const Home = (props) => {
-  const { data, filterCharacters } = props;
+  const { data, filterCharacters, filterSpecies } = props;
 
   return (
     <>
-      <Filters filterCharacters={filterCharacters} />
+      <Filters filterCharacters={filterCharacters} filterSpecies={filterSpecies} species={data.species} />
       <CharacterList data={data} />
     </>
   )
