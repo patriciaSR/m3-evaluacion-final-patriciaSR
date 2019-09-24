@@ -24,6 +24,7 @@ class App extends React.Component {
     this.filterCharacters = this.filterCharacters.bind(this);
     this.getSpecies = this.getSpecies.bind(this);
     this.filterSpecies = this.filterSpecies.bind(this);
+    this.filterGender = this.filterGender.bind(this);
   }
 
   getCharactersArr() {
@@ -31,7 +32,10 @@ class App extends React.Component {
       this.setState({
         characters: data.results,
         isFetching: false,
-        species: this.getSpecies(data.results)
+        species: this.getSpecies(data.results),
+        gender: this.getGender(data.results),
+        genderSelected: 'all'
+
       });
     })
   }
@@ -59,6 +63,12 @@ class App extends React.Component {
       })
     )
   }
+  filterGender(e) {
+    const genderValue = e.currentTarget.value;
+    this.setState({
+      genderSelected: genderValue
+    })
+  }
 
 
   componentDidMount() {
@@ -69,6 +79,15 @@ class App extends React.Component {
     return data.reduce((acc, character) => {
       if (!acc.includes(character.species)) {
         acc.push(character.species);
+      }
+      return acc;
+    }, []);
+  }
+
+  getGender(data) {
+    return data.reduce((acc, character) => {
+      if (!acc.includes(character.gender)) {
+        acc.push(character.gender);
       }
       return acc;
     }, []);
@@ -88,6 +107,7 @@ class App extends React.Component {
                   data={this.state}
                   filterCharacters={this.filterCharacters}
                   filterSpecies={this.filterSpecies}
+                  filterGender={this.filterGender}
                 />
               )}
               />
