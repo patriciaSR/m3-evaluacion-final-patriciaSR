@@ -17,7 +17,8 @@ class App extends React.Component {
       filterName: '',
       isFetching: true,
       species: [],
-      filteredSpecies: []
+      filteredSpecies: [],
+      filteredEpisodes: 0
     }
 
     this.getCharactersArr = this.getCharactersArr.bind(this);
@@ -25,6 +26,8 @@ class App extends React.Component {
     this.getSpecies = this.getSpecies.bind(this);
     this.filterSpecies = this.filterSpecies.bind(this);
     this.filterGender = this.filterGender.bind(this);
+    this.filterEpisodes = this.filterEpisodes.bind(this);
+
   }
 
   getCharactersArr() {
@@ -70,6 +73,13 @@ class App extends React.Component {
     })
   }
 
+  filterEpisodes(e) {
+    const episodesValue = parseInt(e.currentTarget.value);
+    this.setState({
+      filteredEpisodes: episodesValue
+    })
+  }
+
 
   componentDidMount() {
     this.getCharactersArr();
@@ -108,6 +118,7 @@ class App extends React.Component {
                   filterCharacters={this.filterCharacters}
                   filterSpecies={this.filterSpecies}
                   filterGender={this.filterGender}
+                  filterEpisodes={this.filterEpisodes}
                 />
               )}
               />

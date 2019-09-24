@@ -14,14 +14,15 @@ const NoResults = () => (
 );
 
 const CharacterList = ({ data }) => {
-  const { characters, filterName, filteredSpecies, genderSelected } = data;
+  const { characters, filterName, filteredSpecies, filteredEpisodes, genderSelected } = data;
 
   const filteredCharacters = characters.filter(
     character => filterName ? character.name.toLowerCase().includes(filterName) : true
   )
   .filter(character => filteredSpecies[0] ? filteredSpecies.includes(character.species) : true)
   .filter(character => genderSelected !== 'all' ? character.gender === genderSelected : true)
-  ;
+  .filter(character => filteredEpisodes ? character.episode.length >= filteredEpisodes : true)
+  
 
   if (!filteredCharacters.length) {
     return (

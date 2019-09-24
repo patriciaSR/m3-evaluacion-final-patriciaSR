@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelected, filterGender }) => {
+const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelected, filterGender, filterEpisodes }) => {
 
   return (
     <div className="page__filters">
@@ -10,7 +10,7 @@ const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelec
         <label htmlFor="finder" className="finder__label"></label>
         <input type="text" className="finder__input" id="finder" onChange={filterCharacters} />
       </div>
-      <div className="checkbox1">
+      <div className="checkbox">
         {species.map((specie, index) => (
           <label htmlFor="option1" key={index}>
             <input
@@ -53,6 +53,16 @@ const Filters = ({ filterCharacters, species, filterSpecies, gender, genderSelec
             All
             </label>
         </div>
+      </div>
+      <div className="select">
+        <label for="size">Nº de Episodios</label>
+        <select id="size" name="size" onChange={filterEpisodes}>
+          <option value="0"> All </option>
+          <option value="5">5 o más</option>
+          <option value="10">10 o más</option>
+          <option value="20">20 o más</option>
+          <option value="30">30 o más</option>
+        </select>
       </div>
     </div >
   )
