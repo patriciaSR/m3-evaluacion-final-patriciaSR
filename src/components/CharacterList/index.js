@@ -13,7 +13,7 @@ const NoResults = () => (
   </>
 );
 
-const CharacterList = ({ data }) => {
+const CharacterList = ({ data, favSelect, favs }) => {
   const { characters, filterName, filteredSpecies, filterGender, filterEpisodes, filterOrigin, filteredLocations } = data;
 
   const filteredCharacters = characters.filter(
@@ -35,9 +35,10 @@ const CharacterList = ({ data }) => {
   return (
     <ol className="character__list">
       {filteredCharacters.map(character => (
-        <li className="list__character" key={character.id} id={character.id}>
+        <li className={`list__character ${favs.find(fav => fav.id === character.id) && 'red'}`} key={character.id} id={character.id}>
+          <i class="fas fa-heart" onClick={() => favSelect(character)}></i>
           <Link to={`/character/${character.id}`} className="character__link" >
-            <CharacterCard character={character} />
+            <CharacterCard character={character}/>
           </Link>
         </li>
       ))}

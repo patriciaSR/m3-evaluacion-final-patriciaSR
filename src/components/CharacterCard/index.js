@@ -6,11 +6,11 @@ const CharacterCard = ({ character }) => {
   const {
     image,
     name,
-    species
+    species,
   } = character;
 
   return (
-    <div className="character__card">
+    <div className="character__card" >
       <img src={image} alt={name} className="character__image" />
       <div className="character__data">
         <h2 className="card__name">{name}</h2>

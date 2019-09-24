@@ -4,7 +4,7 @@ import Filters from '../Filters';
 import CharacterList from '../CharacterList';
 
 const Home = (props) => {
-  const { data, filterByName, filterSpecies, filterLocations } = props;
+  const { data, filterByName, filterSpecies, filterLocations, favSelect } = props;
   
   return (
     <>
@@ -15,14 +15,13 @@ const Home = (props) => {
         data={data}
       />
 
-      <CharacterList data={data} />
+      <CharacterList data={data} favSelect={favSelect} favs={data.favs}/>
     </>
   )
 }
 
 Home.propTypes = {
-  data: PropTypes.object.isRequired,
-  filterCharacters: PropTypes.func.isRequired
+  data: PropTypes.object.isRequired
 }
 
 export default Home;

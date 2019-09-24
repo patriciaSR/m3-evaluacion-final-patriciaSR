@@ -94,7 +94,6 @@ const Filters = ({ filterByName, filterSpecies, filterLocations, data }) => {
 }
 
 Filters.propTypes = {
-  filterCharacters: PropTypes.func.isRequired
 }
 
 export default Filters;
