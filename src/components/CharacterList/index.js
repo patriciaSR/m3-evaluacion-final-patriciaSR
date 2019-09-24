@@ -14,16 +14,18 @@ const NoResults = () => (
 );
 
 const CharacterList = ({ data }) => {
-  const { characters, filterName, filteredSpecies, filteredEpisodes, genderSelected } = data;
+  const { characters, filterName, filteredSpecies, filterGender, filterEpisodes, filterOrigin, filteredLocations } = data;
 
   const filteredCharacters = characters.filter(
     character => filterName ? character.name.toLowerCase().includes(filterName) : true
   )
   .filter(character => filteredSpecies[0] ? filteredSpecies.includes(character.species) : true)
-  .filter(character => genderSelected !== 'all' ? character.gender === genderSelected : true)
-  .filter(character => filteredEpisodes ? character.episode.length >= filteredEpisodes : true)
-  
+  .filter(character => filterGender !== 'all' ? character.gender === filterGender : true)
+  .filter(character => filterEpisodes ? character.episode.length >= filterEpisodes : true)
+  .filter(character => filterOrigin !== 'all' ? character.origin.name.toLowerCase() === filterOrigin.toLowerCase() : true)
+  .filter(character => filteredLocations[0] ? filteredLocations.includes(character.location.name) : true)
 
+  
   if (!filteredCharacters.length) {
     return (
       <NoResults />
