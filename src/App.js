@@ -15,6 +15,7 @@ class App extends React.Component {
     this.state = {
       characters: [],
       filterName: '',
+      filterType: '',
       isFetching: true,
       species: []
     }
@@ -35,10 +36,11 @@ class App extends React.Component {
   }
 
   filterCharacters(e) {
-    const characterName = e.currentTarget.value.toLowerCase();
+    const characterValue = e.currentTarget.value.toLowerCase();
+    const name = e.currentTarget.name;
 
     this.setState({
-      filterName: characterName
+      [name]: characterValue
     })
   }
 

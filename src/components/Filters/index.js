@@ -6,8 +6,15 @@ const Filters = ({ filterCharacters }) => {
 
   return (
     <div className="page__filters">
-      <label htmlFor="finder" className="finder__label"></label>
-      <input type="text" className="finder__input" id="finder" onChange={filterCharacters} />
+      <div className="filterByName">
+        <label htmlFor="finder" className="finder__label"></label>
+        <input type="text" name="filterName" className="finder__input" id="finder" onChange={filterCharacters} />
+      </div>
+      <div className="filterByType">
+        <label htmlFor="finder" className="finder__label"></label>
+        <input type="text" name="filterType" className="finder__input" id="finder" onChange={filterCharacters} />
+      </div>
+
     </div>
   )
 }

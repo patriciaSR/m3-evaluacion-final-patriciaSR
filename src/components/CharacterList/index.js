@@ -14,10 +14,11 @@ const NoResults = () => (
 );
 
 const CharacterList = ({ data }) => {
-  const { characters, filterName } = data;
+  const { characters, filterName, filterType } = data;
   const filteredCharacters = characters.filter(
     character => filterName ? character.name.toLowerCase().includes(filterName) : true
-  );
+  )
+  .filter(character => character.type.toLowerCase().includes(filterType));
 
   if (!filteredCharacters.length) {
     return (
